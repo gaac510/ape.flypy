@@ -1,0 +1,995 @@
+# “猿”布局——在小鹤键盘默认布局的基础上修改的键盘布局
+# encoding: utf-8
+
+config_version: 'for小鹤主题5.0-2021.06.23'
+name: 猿
+# 本主题依附于小鹤主题使用，下面__include: 之后紧跟的就是主题名
+# 如使用本主题，小鹤主题名应为：trime.yaml；如小鹤主题名为：小鹤.trime.yaml，则需在本文件内查找“__include: trime”替换为“__include: 小鹤.trime”
+# 
+author:
+- '散步的鹤 flypy.com' #小鹤音形输入法和小鹤安卓键盘的作者
+- 'gaac510 github.com/gaac510' #“猿”布局作者
+
+width: 
+# ----------布局全局数值------------
+  YJJJ: &yjjj 0 #5 #键(j)间(j)距(j)
+  YHJJ: &yhjj 0 #3 #行(h)间(j)距(j)
+  YJSJ: &yjsj 0 #25 #键(j)四(s)角(j)弧度
+
+  #=== 辅助行 ===
+  YFVH: &yfvh 58  #辅(f)助(v)行(h)行高
+  YZFX: &yzfx 7  #辅助行长按字(z)符(f)x偏移量
+  YZFY: &yzfy 4  #辅助行长按字(z)符(f)y偏移量
+
+  #=== 主键盘 ===
+  YZMU: &yzmu 58  #字(z)母(m)首(u)行行高
+  YZMV: &yzmv 58  #字(z)母(m)中(v)行行高
+  YZMW: &yzmw 58  #字(z)母(m)尾(w)行行高
+  YKGH: &ykgh 58  #空(k)格(g)行(h)行高
+  YJPD: &yjpd 21  #键(j)盘(p)底(d)空隙高度
+  
+  #=== ascii数字键盘 ===
+  YUZJ: &yuzj 21.8  #ascii数(u)字(z)键(j)盘底空隙高度
+
+  #=== 符号键盘 ===
+  YFHJ: &yfhj 52  #符(f)号(h)键(j)盘行高
+  YDBC: &ydbc 44.5  #符号键盘底(d)部(b)菜(c)单行高
+
+  #=== 选单页面 ===
+  YXDH: &yxdh 77 #选(x)单(d)行(h)高
+# ----------------------------------
+
+assist_row: #辅助行
+  - #Shift键上移
+    click: Shift_L
+    composing: Escape
+    swipe_up: DelH
+    width: 15
+    key_text_color: SHt
+    height: *yfvh
+  -
+    click: Left
+    long_click: undo
+    width: 10
+    key_back_color: szb
+    key_text_color: szt
+    key_symbol_color: szs
+    hilited_key_back_color: szh
+    hilited_key_symbol_color: szhs
+    key_symbol_offset_y: *yzfy
+    key_symbol_offset_x: *yzfx
+  -
+    click: Up
+    long_click: select_all
+    width: 10
+    key_text_offset_x: 2
+    key_back_color: szb
+    key_text_color: szt
+    key_symbol_color: szs
+    hilited_key_back_color: szh
+    hilited_key_symbol_color: szhs
+    key_symbol_offset_y: *yzfy
+    key_symbol_offset_x: *yzfx
+  -
+    click: Down
+    long_click: cut
+    width: 10
+    key_text_offset_x: 2
+    key_back_color: szb
+    key_text_color: szt
+    key_symbol_color: szs
+    hilited_key_back_color: szh
+    hilited_key_symbol_color: szhs
+    key_symbol_offset_y: *yzfy
+    key_symbol_offset_x: *yzfx
+  -
+    click: Right
+    long_click: copy
+    width: 10
+    key_back_color: szb
+    key_text_color: szt
+    key_symbol_color: szs
+    hilited_key_back_color: szh
+    hilited_key_symbol_color: szhs
+    key_symbol_offset_y: *yzfy
+    key_symbol_offset_x: *yzfx
+  -
+    click: '{'
+    long_click: '}'
+    width: 10
+    key_back_color: bdb
+    key_text_color: bdt
+    key_symbol_color: bds
+    hilited_key_text_color: bdht
+    hilited_key_symbol_color: bdhs
+    hilited_key_back_color: bdh
+    key_symbol_offset_y: *yzfy
+    key_symbol_offset_x: *yzfx
+  -
+    click: '['
+    long_click: ']'
+    width: 10
+    key_back_color: bdb
+    key_text_color: bdt
+    key_symbol_color: bds
+    hilited_key_text_color: bdht
+    hilited_key_symbol_color: bdhs
+    hilited_key_back_color: bdh
+    key_symbol_offset_y: *yzfy
+    key_symbol_offset_x: *yzfx
+  -
+    click: "("
+    long_click: ')'
+    width: 10
+    key_back_color: bdb
+    key_text_color: bdt
+    key_symbol_color: bds
+    hilited_key_text_color: bdht
+    hilited_key_symbol_color: bdhs
+    hilited_key_back_color: bdh
+    key_symbol_offset_y: *yzfy
+    key_symbol_offset_x: *yzfx
+  - #退格键上移
+    click: BackSpace
+    #swipe_up: Candidate_switch #这玩意有点烦
+    key_text_color: SHt
+    width: 15
+
+style:
+  __include: trime:/style
+
+android_keys:
+  __include: trime:/android_keys
+
+preset_keys:
+  __include: trime:/preset_keys
+  __patch:
+    "Home/label": Home #默认为⇤
+    "End/label": End #默认为⇥
+    "select_all/label": 全选 #默认为☑
+    "select_H/label": 行选 #默认为↔
+    "cut/label": 剪切 #默认为✁
+    "copy/label": 复制 #默认为❐
+    "paste/label": 粘贴 #默认为▣
+    "paste2/label": 粘贴 #默认为▣
+    "redo/label": 重做 #默认为↷
+    "undo/label": 撤销 #默认为↶
+    tab_forth: {send: Tab, label: "Tab", functional: false, repeatable: false}
+    tab_back: {send: Shift+Tab, label: "⇦", functional: false, repeatable: false}
+    return_n_switch: {text: "{Return}{Mode_switch}", label: "中↩英"}
+    space_lovefly: {send: space, label: "Love Fly", repeatable: true, functional: false}
+    space_small: {repeatable: true, label: ␣, functional: false, send: space}
+    quotation_pair: {label: '"', text: '""{Left}', repeatable: false, functional: false}
+    apostrophe_pair: {label: "'", text: "''{Left}", repeatable: false, functional: false}
+
+fallback_colors:
+  __include: trime:/fallback_colors
+
+preset_color_schemes:
+  __include: trime:/preset_color_schemes
+  
+preset_keyboards:
+  __include: trime:/preset_keyboards
+  
+  default:
+    __include: trime:/preset_keyboards/default
+    horizontal_gap: *yjjj
+    vertical_gap: *yhjj
+    round_corner: *yjsj
+    keys:
+      __include: assist_row #增加辅助行
+      __append:
+        __include: trime:/preset_keyboards/default/keys
+        __append: [{width: 100, height: *yjpd}] #键盘底空隙
+        __patch:
+          # ====== 字母首行 ======
+          "@0/+": {height: *yzmu}
+          # ====== 字母中行 ======
+          "@10": null #默认布局为隐藏`a`键
+          "@11/+": {long_click: '!', height: *yzmv}
+          "@12/+": {long_click: '@'}
+          "@13/+": {long_click: '#'}
+          "@14/+": {long_click: '$'}
+          "@15/+": {long_click: '%'}
+          "@16/+": {long_click: '^'}
+          "@17/+": {long_click: '&'}
+          "@18/+": {long_click: '*'}
+          "@19/+": {long_click: '\'}
+          "@20": #默认布局为隐藏`l`键
+            ascii: "'"
+            click: apostrophe_pair
+            long_click: quotation_pair
+            key_back_color: bdb
+            key_text_color: bdt
+            key_symbol_color: bds
+            hilited_key_text_color: bdht
+            hilited_key_symbol_color: bdhs
+            hilited_key_back_color: bdh
+          # ====== 字母尾行 ======
+          "@21": null #默认布局为Shift键；已上移。
+          "@22/+": {long_click: '`', height: *yzmw}
+          "@23/+": {long_click: '~'}
+          "@24/+": {long_click: '|'}
+          "@25/+": {long_click: '_'}
+          "@26/+": {long_click: '-'}
+          "@27/+": {long_click: '+'}
+          "@28/+": {long_click: '='}
+          "@29": #默认布局为退格键；已上移。
+            click: ','
+            long_click: '<'
+            key_back_color: bdb
+            key_text_color: bdt
+            key_symbol_color: bds
+            hilited_key_text_color: bdht
+            hilited_key_symbol_color: bdhs
+            hilited_key_back_color: bdh
+          "@after 29":
+            click: '.'
+            long_click: '>'
+            key_back_color: bdb
+            key_text_color: bdt
+            key_symbol_color: bds
+            hilited_key_text_color: bdht
+            hilited_key_symbol_color: bdhs
+            hilited_key_back_color: bdh
+          "@after 30": 
+            click: '/'
+            long_click: '?'
+            key_back_color: bdb
+            key_text_color: bdt
+            key_symbol_color: bds
+            hilited_key_text_color: bdht
+            hilited_key_symbol_color: bdhs
+            hilited_key_back_color: bdh
+          # ====== 空格行 ======
+          "@30/+": #默认布局为数字键盘切换键
+            long_click: paste
+            width: 15
+            height: *ykgh
+          "@31": #默认布局为逗号键
+            click: tab_forth
+            long_click: tab_back #默认为 "?"
+            composing: return_n_switch #默认为 delimiterD
+            width: 15
+            label: null #默认为 "  ，"
+            key_symbol_offset_x: 16
+            key_back_color: bdb
+            key_text_color: bdt
+            key_symbol_color: bds
+            hilited_key_back_color: bdh
+            hilited_key_text_color: bdht
+            hilited_key_symbol_color: bdhs
+          "@32": #默认布局为空格键
+            click: space_lovefly
+            long_click: Mode_switch
+            width: 40
+            key_text_size: 9
+            key_text_offset_x: 0
+            key_text_offset_y: 3
+            key_symbol_offset_x: 0
+            key_symbol_offset_y: 6
+            #霓裳配色
+            key_back_color: kgb
+            key_text_color: kgt
+            key_symbol_color: kgs
+            hilited_key_back_color: kgh
+            hilited_key_text_color: kght
+            hilited_key_symbol_color: kghs
+          "@33": #默认布局为分号键
+            click: ";"
+            long_click: ":"
+            composing: delimiterJ
+            ascii: ";"
+            width: 15
+            #霓裳配色
+            key_back_color: bdb
+            key_text_color: bdt
+            key_symbol_color: bds
+            hilited_key_text_color: bdht
+            hilited_key_symbol_color: bdhs
+            hilited_key_back_color: bdh
+          "@34/+": #默认布局为回车键
+            width: 15
+            #long_click: haha
+
+  defaultVJ:
+    __include: preset_keyboards/default
+    key_symbol_offset_x: 0
+    keyboard_back_color: Vback
+    name: "小鹤部件助记"
+    __patch:
+        "keys/@9/+":
+          long_click: "犭求"
+          hint: "具其上"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@10/+":
+          long_click: 亠
+          hint: "夂攵文"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@11/+":
+          long_click: "彐山"
+          hint: "卩阝见下"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@12/+":
+          long_click: 亻
+          hint: 
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@13/+":
+          long_click: 田
+          hint: 
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@14/+":
+          long_click: "⺷⺶羊"
+          hint: "讠𧘇"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@15/+":
+          long_click: "饣石"
+          hint: "龵𠂇氺"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@16/+":
+          long_click: "彳亍"
+          hint: 虫
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@17/+":
+          long_click: "日月"
+          hint: 目
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@18/+":
+          long_click: "礻衤"
+          key_symbol_offset_x: 0
+          key_text_color: cdh
+          hint: 
+          key_text_color: VJBH
+          key_symbol_color: VJS
+        "keys/@20/+":
+          key_symbol_offset_x: 0
+          key_text_color: cdh
+          hint: 鱼
+          key_text_color: VJBH
+          key_symbol_color: VJS
+        "keys/@21/+":
+          long_click: 罒
+          hint: "纟厶龴"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@22/+":
+          long_click: "冫氵"
+          key_symbol_offset_x: 0
+          key_text_color: cdh
+          hint: "⺈刂"
+          key_text_color: VJBH
+          key_symbol_color: VJS
+        "keys/@23/+":
+          long_click: "扌龶缶"
+          hint: "寿带上"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@24/+":
+          long_click: "鬼骨革"
+          hint: "艮 既左"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@25/+":
+          long_click: "灬虍黑"
+          hint: "余下"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@26/+":
+          hint: "龹钅金"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@27/+":
+          long_click: "囗㠯"
+          hint: "匚冂凵"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@28/+":
+          key_symbol_offset_x: 0
+          key_text_color: cdh
+          hint: "耂立龙"
+          key_text_color: VJBH
+          key_symbol_color: VJS
+        "keys/@31/+":
+          hint: "⻊廴辶"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@32/+":
+          long_click: "忄乂"
+          hint: "⺍⺌⺗"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@33/+":
+          hint: "艹廾"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@34/+":
+          key_symbol_offset_x: 0
+          key_text_color: cdh
+          hint: "⺮豸"
+          key_text_color: VJBH
+          key_symbol_color: VJS
+        "keys/@35/+":
+          long_click: "宀冖丷勹"
+          hint: "疒 比左"
+          key_text_color: VJT
+          key_symbol_color: VJS
+        "keys/@36/+":
+          key_symbol_offset_x: 0
+          key_text_color: cdh
+          hint: "⺧牜"
+          key_text_color: VJBH
+          key_symbol_color: VJS
+        "keys/@37/+":
+          hint: 朩
+          key_text_color: VJT
+          key_symbol_color: VJS
+
+        #"keys/@41/key_symbol_offset_x": 14
+        #"keys/@42/key_symbol_offset_x": 14
+        #"keys/@43/key_symbol_offset_x": 42
+        #"keys/@44/key_symbol_offset_x": 14
+        #"keys/@45/key_symbol_offset_x": 16
+
+  letter:
+    __include: preset_keyboards/default
+    ascii_mode: 1
+    lock: false
+    name: "letter26键"
+    __patch:
+      "keys/@29/long_click": '"'
+      "keys/@41/click": K_number
+      "keys/@43/click": space2
+      "keys/@43/long_click": null
+
+  number:
+    __include: trime:/preset_keyboards/number
+    key_symbol_offset_y: 1.8
+    key_symbol_offset_x: 3
+    height: *yzmu
+    keys:
+      __include: assist_row #添加辅助行
+      __append:
+        __include: trime:/preset_keyboards/number/keys
+        __patch:
+          "@4/click": paste2
+          "@9/click": space_small
+          "@14/click": K_letter
+        __append: [{width: 100, height: *yuzj}]
+
+  menu:
+    __include: trime:/preset_keyboards/menu
+    height: *yxdh
+    __patch:
+      "keys/@next": {width: 100, height: *yuzj}
+
+  symbolsSZ:
+    __include: trime:/preset_keyboards/symbolsSZ
+    width: 14.28
+    height: *yfhj
+    #horizontal_gap: *yjjj
+    #vertical_gap: *yhjj
+    keys:
+      __include: assist_row #增加辅助行
+      __patch:
+        "@1/long_click": null 
+        "@2/long_click": null 
+        "@3/long_click": null 
+        "@4/long_click": null 
+      __append:
+        __include: trime:/preset_keyboards/symbolsSZ/keys
+        __patch:
+          # ====== 数字1、2、3行 ======
+          "@after 0":
+            click: a
+            long_click: undo
+            key_symbol_offset_y: *yzfy
+          "@after 1":
+            click: b
+            long_click: redo
+            key_symbol_offset_y: *yzfy
+          "@4/+":
+            click: Delete
+            key_text_color: off_key_text_color
+            key_symbol_color: off_key_text_color
+            hilited_key_text_color: hilited_off_key_text_color
+          # ====== 数字4、5、6行 ======
+          "@before 8":
+            click: c
+            long_click: select_all
+            key_symbol_offset_y: *yzfy
+          "@before 9":
+            click: d
+            long_click: select_H
+            key_symbol_offset_y: *yzfy
+          # ====== 数字7、8、9行 ======
+          "@after 12":
+            click: e
+            long_click: cut
+            key_symbol_offset_y: *yzfy
+          "@after 13":
+            click: f
+            long_click: copy
+            key_symbol_offset_y: *yzfy
+          "@14/+": 
+            click: Home
+            long_click: End
+            key_symbol_offset_x: 16
+            key_symbol_offset_y: *yzfy
+            key_text_color: off_key_text_color
+            key_symbol_color: off_key_text_color
+            hilited_key_text_color: hilited_off_key_text_color
+          # ====== 数字0行 ======
+          "@before 20":
+            click: x
+            long_click: paste
+            key_symbol_offset_y: *yzfy
+          "@before 21":
+            click: tab_forth
+            long_click: tab_back
+            key_symbol_offset_x: 16
+            key_symbol_offset_y: *yzfy
+            key_text_color: fhfht
+            key_symbol_color: fhfht
+            key_back_color: fhfhb
+            hilited_key_back_color: fhfhh
+          # ====== 底部菜单 ======
+          "@20/+": #默认空按键
+            height: *ydbc
+            width: 4
+          "@after 24":
+            click: K_back
+            width: 12
+            key_text_color: cdh
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@after 25":
+            click: ""
+            width: 6
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@28": null
+          "@29": null
+
+  symbolsEN:
+    __include: trime:/preset_keyboards/symbolsEN
+    height: *yfhj
+    keys:
+      __include: assist_row
+      __patch:
+        "@5/+":
+          click: Home
+          long_click: End
+        "@6/+":
+          click: tab_forth
+          long_click: tab_back
+        "@7":
+          click: space1
+          long_click: null
+          width: 10
+          key_back_color: bdb
+          key_text_color: bdt
+          key_symbol_color: bds
+          hilited_key_text_color: bdht
+          hilited_key_symbol_color: bdhs
+          hilited_key_back_color: bdh
+          key_symbol_offset_y: *yzfy
+          key_symbol_offset_x: *yzfx
+      __append:
+        __include: trime:/preset_keyboards/symbolsEN/keys
+        __patch:
+          # ====== 默认首行 ======
+          "@7/+":
+            click: paste
+          # ====== 底部菜单 ======
+          "@32/+": #默认空按键
+            height: *ydbc
+            width: 4
+          "@after 32":
+            click: K_back
+            width: 12
+            key_text_color: cdh
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@after 33":
+            click: ""
+            width: 6
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@40": null
+          "@41": null
+    
+  symbolsEN2:
+    __include: trime:/preset_keyboards/symbolsEN2
+    height: *yfhj
+    keys:
+      __include: assist_row
+      __patch:
+        "@5/+":
+          click: Home
+          long_click: End
+        "@6/+":
+          click: tab_forth
+          long_click: tab_back
+        "@7":
+          click: space1
+          long_click: null
+          width: 10
+          key_back_color: bdb
+          key_text_color: bdt
+          key_symbol_color: bds
+          hilited_key_text_color: bdht
+          hilited_key_symbol_color: bdhs
+          hilited_key_back_color: bdh
+          key_symbol_offset_y: *yzfy
+          key_symbol_offset_x: *yzfx
+      __append:
+        __include: trime:/preset_keyboards/symbolsEN2/keys
+        __patch:
+          # ====== 默认首行 ======
+          "@7/+":
+            click: paste
+          # ====== 底部菜单 ======
+          "@32/+": #默认空按键
+            height: *ydbc
+            width: 4
+          "@after 32":
+            click: K_back
+            width: 12
+            key_text_color: cdh
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@after 33":
+            click: ""
+            width: 6
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@40": null
+          "@41": null
+    
+  symbolsCN:
+    __include: trime:/preset_keyboards/symbolsCN
+    height: *yfhj
+    keys:
+      __include: assist_row
+      __patch:
+        "@5/+":
+          click: Home
+          long_click: End
+        "@6/+":
+          click: tab_forth
+          long_click: tab_back
+        "@7":
+          click: space1
+          long_click: null
+          width: 10
+          key_back_color: bdb
+          key_text_color: bdt
+          key_symbol_color: bds
+          hilited_key_text_color: bdht
+          hilited_key_symbol_color: bdhs
+          hilited_key_back_color: bdh
+          key_symbol_offset_y: *yzfy
+          key_symbol_offset_x: *yzfx
+      __append:
+        __include: trime:/preset_keyboards/symbolsCN/keys
+        __patch:
+          # ====== 默认首行 ======
+          "@7/+":
+            click: paste
+          # ====== 底部菜单 ======
+          "@32/+": #默认空按键
+            height: *ydbc
+            width: 4
+          "@after 32":
+            click: K_back
+            width: 12
+            key_text_color: cdh
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@after 33":
+            click: ""
+            width: 6
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@40": null
+          "@41": null
+    
+  emoji:
+    __include: trime:/preset_keyboards/emoji
+    height: *yfhj
+    keys:
+      __include: assist_row
+      __patch:
+        "@5/+":
+          click: Home
+          long_click: End
+        "@6/+":
+          click: tab_forth
+          long_click: tab_back
+        "@7":
+          click: space1
+          long_click: null
+          width: 10
+          key_back_color: bdb
+          key_text_color: bdt
+          key_symbol_color: bds
+          hilited_key_text_color: bdht
+          hilited_key_symbol_color: bdhs
+          hilited_key_back_color: bdh
+          key_symbol_offset_y: *yzfy
+          key_symbol_offset_x: *yzfx
+      __append:
+        __include: trime:/preset_keyboards/emoji/keys
+        __patch:
+          # ====== 默认首行 ======
+          "@7/+":
+            click: paste
+          # ====== 底部菜单 ======
+          "@32/+": #默认空按键
+            height: *ydbc
+            width: 4
+          "@after 32":
+            click: K_back
+            width: 12
+            key_text_color: cdh
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@after 33":
+            click: ""
+            width: 6
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@40": null
+          "@41": null
+    
+  emoji2:
+    __include: trime:/preset_keyboards/emoji2
+    height: *yfhj
+    keys:
+      __include: assist_row
+      __patch:
+        "@5/+":
+          click: Home
+          long_click: End
+        "@6/+":
+          click: tab_forth
+          long_click: tab_back
+        "@7":
+          click: space1
+          long_click: null
+          width: 10
+          key_back_color: bdb
+          key_text_color: bdt
+          key_symbol_color: bds
+          hilited_key_text_color: bdht
+          hilited_key_symbol_color: bdhs
+          hilited_key_back_color: bdh
+          key_symbol_offset_y: *yzfy
+          key_symbol_offset_x: *yzfx
+      __append:
+        __include: trime:/preset_keyboards/emoji2/keys
+        __patch:
+          # ====== 默认首行 ======
+          "@7/+":
+            click: paste
+          # ====== 底部菜单 ======
+          "@32/+": #默认空按键
+            height: *ydbc
+            width: 4
+          "@after 32":
+            click: K_back
+            width: 12
+            key_text_color: cdh
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@after 33":
+            click: ""
+            width: 6
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@40": null
+          "@41": null
+  
+  symbolsTS:
+    __include: trime:/preset_keyboards/symbolsTS
+    height: *yfhj
+    keys:
+      __include: assist_row
+      __patch:
+        "@5/+":
+          click: Home
+          long_click: End
+        "@6/+":
+          click: tab_forth
+          long_click: tab_back
+        "@7":
+          click: space1
+          long_click: null
+          width: 10
+          key_back_color: bdb
+          key_text_color: bdt
+          key_symbol_color: bds
+          hilited_key_text_color: bdht
+          hilited_key_symbol_color: bdhs
+          hilited_key_back_color: bdh
+          key_symbol_offset_y: *yzfy
+          key_symbol_offset_x: *yzfx
+      __append:
+        __include: trime:/preset_keyboards/symbolsTS/keys
+        __patch:
+          # ====== 默认首行 ======
+          "@7/+":
+            click: paste
+          # ====== 底部菜单 ======
+          "@32/+": #默认空按键
+            height: *ydbc
+            width: 4
+          "@after 32":
+            click: K_back
+            width: 12
+            key_text_color: cdh
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@after 33":
+            click: ""
+            width: 6
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@40": null
+          "@41": null
+    
+  symbolsTS2:
+    __include: trime:/preset_keyboards/symbolsTS2
+    height: *yfhj
+    keys:
+      __include: assist_row
+      __patch:
+        "@5/+":
+          click: Home
+          long_click: End
+        "@6/+":
+          click: tab_forth
+          long_click: tab_back
+        "@7":
+          click: space1
+          long_click: null
+          width: 10
+          key_back_color: bdb
+          key_text_color: bdt
+          key_symbol_color: bds
+          hilited_key_text_color: bdht
+          hilited_key_symbol_color: bdhs
+          hilited_key_back_color: bdh
+          key_symbol_offset_y: *yzfy
+          key_symbol_offset_x: *yzfx
+      __append:
+        __include: trime:/preset_keyboards/symbolsTS2/keys
+        __patch:
+          # ====== 默认首行 ======
+          "@7/+":
+            click: paste
+          # ====== 底部菜单 ======
+          "@32/+": #默认空按键
+            height: *ydbc
+            width: 4
+          "@after 32":
+            click: K_back
+            width: 12
+            key_text_color: cdh
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@after 33":
+            click: ""
+            width: 6
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@40": null
+          "@41": null
+    
+  symbolsXH:
+    __include: trime:/preset_keyboards/symbolsXH
+    height: *yfhj
+    keys:
+      __include: assist_row
+      __patch:
+        "@5/+":
+          click: Home
+          long_click: End
+        "@6/+":
+          click: tab_forth
+          long_click: tab_back
+        "@7":
+          click: space1
+          long_click: null
+          width: 10
+          key_back_color: bdb
+          key_text_color: bdt
+          key_symbol_color: bds
+          hilited_key_text_color: bdht
+          hilited_key_symbol_color: bdhs
+          hilited_key_back_color: bdh
+          key_symbol_offset_y: *yzfy
+          key_symbol_offset_x: *yzfx
+      __append:
+        __include: trime:/preset_keyboards/symbolsXH/keys
+        __patch:
+          # ====== 默认首行 ======
+          "@7/+":
+            click: paste
+          # ====== 底部菜单 ======
+          "@32/+": #默认空按键
+            height: *ydbc
+            width: 4
+          "@after 32":
+            click: K_back
+            width: 12
+            key_text_color: cdh
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@after 33":
+            click: ""
+            width: 6
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@40": null
+          "@41": null
+    
+  symbolsXH2:
+    __include: trime:/preset_keyboards/symbolsXH2
+    height: *yfhj
+    keys:
+      __include: assist_row
+      __patch:
+        "@5/+":
+          click: Home
+          long_click: End
+        "@6/+":
+          click: tab_forth
+          long_click: tab_back
+        "@7":
+          click: space1
+          long_click: null
+          width: 10
+          key_back_color: bdb
+          key_text_color: bdt
+          key_symbol_color: bds
+          hilited_key_text_color: bdht
+          hilited_key_symbol_color: bdhs
+          hilited_key_back_color: bdh
+          key_symbol_offset_y: *yzfy
+          key_symbol_offset_x: *yzfx
+      __append:
+        __include: trime:/preset_keyboards/symbolsXH2/keys
+        __patch:
+          # ====== 默认首行 ======
+          "@7/+":
+            click: paste
+          # ====== 底部菜单 ======
+          "@32/+": #默认空按键
+            height: *ydbc
+            width: 4
+          "@after 32":
+            click: K_back
+            width: 12
+            key_text_color: cdh
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@after 33":
+            click: ""
+            width: 6
+            key_back_color: cdb
+            hilited_key_back_color: cdb
+          "@40": null
+          "@41": null
+
+__patch:
+  - 猿.emojis:/emojis?

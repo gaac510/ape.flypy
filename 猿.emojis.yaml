@@ -1,0 +1,139 @@
+switch:
+  "switches/@1":
+    options: [ _keyboard_emoji, _keyboard_emoji2, _keyboard_emoji3]
+    states: ["🙂", "🙃", "👍"]
+
+emojis:
+  #修改emoji键盘
+  "preset_keyboards/emoji/width": 11.11
+  "preset_keyboards/emoji/keys/@9/click": 🙂
+  "preset_keyboards/emoji/keys/@10/click": 😃
+  "preset_keyboards/emoji/keys/@11/click": 😄
+  "preset_keyboards/emoji/keys/@12/click": 😁
+  "preset_keyboards/emoji/keys/@13/click": 😆
+  "preset_keyboards/emoji/keys/@14/click": 😂
+  "preset_keyboards/emoji/keys/@15/click": 🤣
+  "preset_keyboards/emoji/keys/@after 15": {click: 😌}
+  "preset_keyboards/emoji/keys/@17/click": 🤤
+  "preset_keyboards/emoji/keys/@18/click": 😋
+  "preset_keyboards/emoji/keys/@19/click": 😜
+  "preset_keyboards/emoji/keys/@20/click": 🤪
+  "preset_keyboards/emoji/keys/@21/click": 😓
+  "preset_keyboards/emoji/keys/@22/click": 😅
+  "preset_keyboards/emoji/keys/@23/click": 😳
+  "preset_keyboards/emoji/keys/@24/click": 😊
+  "preset_keyboards/emoji/keys/@25/click": 🤭
+  "preset_keyboards/emoji/keys/@26/click": 😉
+  "preset_keyboards/emoji/keys/@27/click": 🥱
+  "preset_keyboards/emoji/keys/@28/click": 😴
+  "preset_keyboards/emoji/keys/@29/click": 🤓
+  "preset_keyboards/emoji/keys/@30/click": 😎
+  "preset_keyboards/emoji/keys/@31/click": 🤑
+  "preset_keyboards/emoji/keys/@32/click": 🤩
+  "preset_keyboards/emoji/keys/@33/click": 🥳
+  "preset_keyboards/emoji/keys/@34/click": 😤
+  "preset_keyboards/emoji/keys/@35/click": 😗
+  "preset_keyboards/emoji/keys/@36/click": 😘
+  "preset_keyboards/emoji/keys/@37/click": 😍
+  "preset_keyboards/emoji/keys/@38/click": 🥰
+  "preset_keyboards/emoji/keys/@39/click": ❤️
+  "preset_keyboards/emoji/keys/@40/click": 💔
+  "preset_keyboards/emoji/keys/@before 42": {click: 💋}
+  "preset_keyboards/emoji/keys/@before 43": {click: 🌹}
+  "preset_keyboards/emoji/keys/@before 44": {click: 🥀}
+
+  #修改emoji2键盘
+  "preset_keyboards/emoji2/width": 11.11
+  "preset_keyboards/emoji2/keys/@9/click": 🙃
+  "preset_keyboards/emoji2/keys/@10/click": 😑
+  "preset_keyboards/emoji2/keys/@11/click": 🤨
+  "preset_keyboards/emoji2/keys/@12/click": 🤔
+  "preset_keyboards/emoji2/keys/@13/click": 😒
+  "preset_keyboards/emoji2/keys/@14/click": 😏
+  "preset_keyboards/emoji2/keys/@15/click": 🙄
+  "preset_keyboards/emoji2/keys/@after 15": {click: 🤥}
+  "preset_keyboards/emoji2/keys/@17/click": 😕
+  "preset_keyboards/emoji2/keys/@18/click": 🙁
+  "preset_keyboards/emoji2/keys/@19/click": ☹️
+  "preset_keyboards/emoji2/keys/@20/click": 😔
+  "preset_keyboards/emoji2/keys/@21/click": 😟
+  "preset_keyboards/emoji2/keys/@22/click": 😫
+  "preset_keyboards/emoji2/keys/@23/click": 😩
+  "preset_keyboards/emoji2/keys/@24/click": 😢
+  "preset_keyboards/emoji2/keys/@25/click": 😭
+  "preset_keyboards/emoji2/keys/@26/click": 😠
+  "preset_keyboards/emoji2/keys/@27/click": 😡
+  "preset_keyboards/emoji2/keys/@28/click": 🤬
+  "preset_keyboards/emoji2/keys/@29/click": 😈
+  "preset_keyboards/emoji2/keys/@30/click": 👿
+  "preset_keyboards/emoji2/keys/@31/click": 😵
+  "preset_keyboards/emoji2/keys/@32/click": 🥴
+  "preset_keyboards/emoji2/keys/@33/click": 🤢
+  "preset_keyboards/emoji2/keys/@34/click": 🤮
+  "preset_keyboards/emoji2/keys/@35/click": 😮
+  "preset_keyboards/emoji2/keys/@36/click": 🤯
+  "preset_keyboards/emoji2/keys/@37/click": 😧
+  "preset_keyboards/emoji2/keys/@38/click": 🤫
+  "preset_keyboards/emoji2/keys/@39/click": 🤐
+  "preset_keyboards/emoji2/keys/@40/click": 🥶
+  "preset_keyboards/emoji2/keys/@before 42": {click: 😰}
+  "preset_keyboards/emoji2/keys/@before 43": {click: 😱}
+  "preset_keyboards/emoji2/keys/@before 44": {click: 😷}
+
+  #调整emoji、emoji2相关预设键外观
+  "preset_keys/K_backCDZ/label": ▶Ⅰ
+  "preset_keys/K_symbolsBQ1/label": 🙂
+  "preset_keys/K_symbolsBQ2/label": 🙃
+  
+  #增加emoji3相关预设键
+  "preset_keys/+":
+    K_symbolsBQ3: {label: '👍', send: Eisu_toggle, select: emoji3}
+    K_backCDX: {label: ▶Ⅲ, send: Eisu_toggle, select: .last_lock}
+
+  #让emoji2可以跳转到emoji3
+  "preset_keyboards/emoji2/keys/@47/+":
+    click: K_symbolsBQ3
+    long_click: K_backCDX
+
+  #增加emoji3键盘
+  "style/keyboards/@next": emoji3
+  "preset_keyboards/+":
+    emoji3:
+      __include: 猿.trime:/preset_keyboards/emoji2
+      width: 11.11
+      __patch:
+        "keys/@9/click": 👍
+        "keys/@10/click": 👎
+        "keys/@11/click": 👌
+        "keys/@12/click": ✌️
+        "keys/@13/click": 🖕
+        "keys/@14/click": ☝️
+        "keys/@15/click": 👏
+        "keys/@after 15": {click: 🤝}
+        "keys/@17/click": 💪
+        "keys/@18/click": 🙏
+        "keys/@19/click": 🐶
+        "keys/@20/click": 🐕
+        "keys/@21/click": 🐱
+        "keys/@22/click": 🐈
+        "keys/@23/click": 🐷
+        "keys/@24/click": 🐖
+        "keys/@25/click": 🦙
+        "keys/@26/click": 👀
+        "keys/@27/click": 🙅‍♀️
+        "keys/@28/click": 🙅‍♂️
+        "keys/@29/click": 🙋‍♀️
+        "keys/@30/click": 🙋‍♂️
+        "keys/@31/click": 🤦‍♀️
+        "keys/@32/click": 🤦‍♂️
+        "keys/@33/click": 🤷‍♀️
+        "keys/@34/click": 🤷‍♂️
+        "keys/@35/click": 💩
+        "keys/@36/click": 🥊
+        "keys/@37/click": 🔪
+        "keys/@38/click": 🩸
+        "keys/@39/click": 💣
+        "keys/@40/click": 👻
+        "keys/@before 42": {click: 💀}
+        "keys/@before 43": {click: 🎂}
+        "keys/@before 44": {click: 🎮}

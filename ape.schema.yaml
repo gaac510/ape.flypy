@@ -1,0 +1,76 @@
+# Flypy schema settings - 为“猿”布局修改了switches的部分
+# encoding: utf-8
+
+schema:
+  __include: flypy.schema:/schema
+  schema_id: ape
+  name: Love Fly, Ape
+punctuator:
+  __include: flypy.schema:/punctuator
+
+switches:
+  - options: [ _keyboard_menu ]
+    states: [ "　☰" ]
+  - options: [ _keyboard_emoji, _keyboard_emoji2 ]
+    states: ["🎏", "😂"]
+  - name: ascii_mode
+    states: [ 中, 英 ] #默认为[ CN, EN ]
+    reset: 1
+  - name: full_shape
+    #states: [ ◖, ● ]
+    reset: 0
+  - name: _hide_key_hint
+    #states: [ ≑, ≟ ]
+    reset: 0
+  - options: [ _keyboard_number ]
+    #states: [ 123 ]
+    ascii_mode: 0
+  - options: [ _key_VOICE_ASSIST ]
+    #states: [ "🎤" ]
+  - name: simplification
+    states: [ 简, 繁 ]
+    reset: 0
+  - name: _hide_candidate
+    #states: [ ☐, ☒ ]
+    reset: 0
+  - name: ascii_punct
+    states: [ "，。", " , .  " ]
+    reset: 0
+  - options: [_key_IME_switch]
+    states: [⌨]
+  - options: [ _key_Hide ]
+    states: [▼] #默认为﹀
+  - options: [ _keyboard_default, _keyboard_defaultVJ]
+    states: [ "        ", "        "]
+
+engine:
+  __include: flypy.schema:/engine
+speller:
+  __include: flypy.schema:/speller
+translator:
+  __include: flypy.schema:/translator
+historyF:
+  __include: flypy.schema:/historyF
+historyI:
+  __include: flypy.schema:/historyI
+simplification:
+  __include: flypy.schema:/simplification
+custom_phraseVD:
+  __include: flypy.schema:/custom_phraseVD
+custom_phraseXT:
+  __include: flypy.schema:/custom_phraseXT
+custom_phraseYH:
+  __include: flypy.schema:/custom_phraseYH
+reverse_lookup:
+  __include: flypy.schema:/reverse_lookup
+key_binder:
+  __include: flypy.schema:/key_binder
+recognizer:
+  __include: flypy.schema:/recognizer
+menu:
+  __include: flypy.schema:/menu
+style:
+  __include: flypy.schema:/style
+
+__patch:
+  - 猿.emojis:/switch?
