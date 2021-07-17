@@ -97,6 +97,8 @@ emojis:
 
   #增加emoji3键盘
   "style/keyboards/@next": emoji3
+
+for_ape:
   "preset_keyboards/+":
     emoji3:
       __include: 猿.trime:/preset_keyboards/emoji2
@@ -137,3 +139,45 @@ emojis:
         "keys/@before 42": {click: 💀}
         "keys/@before 43": {click: 🎂}
         "keys/@before 44": {click: 🎮}
+
+for_ape_lean:
+  "preset_keyboards/+":
+    emoji3:
+      __include: 猿极简.trime:/preset_keyboards/emoji2
+      width: 11.11
+      __patch:
+        "keys/@9/click": 👍
+        "keys/@10/click": 👎
+        "keys/@11/click": 👌
+        "keys/@12/click": ✌️
+        "keys/@13/click": 🖕
+        "keys/@14/click": ☝️
+        "keys/@15/click": 👏
+        "keys/@after 15": {click: 🤝}
+        "keys/@17/click": 💪
+        "keys/@18/click": 🙏
+        "keys/@19/click": 🐶
+        "keys/@20/click": 🐕
+        "keys/@21/click": 🐱
+        "keys/@22/click": 🐈
+        "keys/@23/click": 🐷
+        "keys/@24/click": 🐖
+        "keys/@25/click": 🦙
+        "keys/@26/click": 👀
+        "keys/@27/click": 🙅‍♀️
+        "keys/@28/click": 🙅‍♂️
+        "keys/@29/click": 🙋‍♀️
+        "keys/@30/click": 🙋‍♂️
+        "keys/@31/click": 🤦‍♀️
+        "keys/@32/click": 🤦‍♂️
+        "keys/@33/click": 🤷‍♀️
+        "keys/@34/click": 🤷‍♂️
+        "keys/@35/click": 💩
+        "keys/@36/click": 🥊
+        "keys/@37/click": 🔪
+        "keys/@38/click": 🩸
+        "keys/@39/click": 💣
+        "keys/@40/click": 👻
+        "keys/@before 42": {click: 💀}
+        "keys/@before 43": {click: 🎂}
+        "keys/@before 44": {click: 🎮}   

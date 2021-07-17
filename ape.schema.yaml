@@ -41,7 +41,7 @@ switches:
   - options: [ _key_Hide ]
     states: [▼] #默认为﹀
   - options: [ _keyboard_default, _keyboard_defaultVJ]
-    states: [ "        ", "        "]
+    states: ["              ", "              "]
 
 engine:
   __include: flypy.schema:/engine

@@ -137,6 +137,7 @@ assist_row: #辅助行
 
 style:
   __include: trime:/style
+  comment_text_size: 8
 
 android_keys:
   __include: trime:/android_keys
@@ -993,3 +994,4 @@ preset_keyboards:
 
 __patch:
   - 猿.emojis:/emojis?
+  - 猿.emojis:/for_ape?

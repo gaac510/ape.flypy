@@ -12,32 +12,29 @@ author:
 
 width: 
 # ----------布局全局数值------------
-  YJJJ: &yjjj 5 #0 #键(j)间(j)距(j)
-  YHJJ: &yhjj 7 #0 #行(h)间(j)距(j)
-  YJSJ: &yjsj 25 #0 #键(j)四(s)角(j)弧度
-  YHXJ: &yhxj 0.5 #10 #候(h)选(x)区间(j)距
+  YJJJ: &yjjj 5 #键(j)间(j)距(j)
+  YHJJ: &yhjj 5 #行(h)间(j)距(j)
+  YJSJ: &yjsj 25 #键(j)四(s)角(j)弧度
 
   #=== 辅助行 ===
-  YFVH: &yfvh 58  #辅(f)助(v)行(h)行高
+  YFVH: &yfvh 50  #辅(f)助(v)行(h)行高
   YZFX: &yzfx 7  #辅助行长按字(z)符(f)x偏移量
   YZFY: &yzfy 4  #辅助行长按字(z)符(f)y偏移量
 
   #=== 主键盘 ===
-  YZMU: &yzmu 58  #字(z)母(m)首(u)行行高
-  YZMV: &yzmv 58  #字(z)母(m)中(v)行行高
-  YZMW: &yzmw 58  #字(z)母(m)尾(w)行行高
-  YKGH: &ykgh 58  #空(k)格(g)行(h)行高
-  YJPD: &yjpd 21  #键(j)盘(p)底(d)空隙高度
-  
-  #=== ascii数字键盘 ===
-  YUZJ: &yuzj 21.8  #ascii数(u)字(z)键(j)盘底空隙高度
+  YZMU: &yzmu 50  #字(z)母(m)首(u)行行高
+  YZMV: &yzmv 50  #字(z)母(m)中(v)行行高
+  YZMW: &yzmw 50  #字(z)母(m)尾(w)行行高
+  YKGH: &ykgh 50  #空(k)格(g)行(h)行高
+  YJPD: &yjpd 20  #键(j)盘(p)底(d)空隙高度
 
   #=== 符号键盘 ===
-  YFHJ: &yfhj 52  #符(f)号(h)键(j)盘行高
-  YDBC: &ydbc 44.5  #符号键盘底(d)部(b)菜(c)单行高
+  YFHJ: &yfhj 45 #符(f)号(h)键(j)盘行高
+  YDBC: &ydbc 40.5 #符号键盘底(d)部(b)菜(c)单行高
 
   #=== 选单页面 ===
-  YXDH: &yxdh 77 #选(x)单(d)行(h)高
+  YXDH: &yxdh 63 #选(x)单(d)行(h)高
+  YXDD: &yxdd 23  #选(x)单(d)底(d)空隙高度
 # ----------------------------------
 
 assist_row: #辅助行
@@ -54,11 +51,11 @@ assist_row: #辅助行
     width: 10
     key_back_color: szb
     key_text_color: szt
-    key_symbol_color: szs
+    key_symbol_color: ape_hilite
     hilited_key_back_color: szh
     hilited_key_symbol_color: szhs
     key_symbol_offset_y: *yzfy
-    key_symbol_offset_x: *yzfx
+    key_symbol_offset_x: 0
   -
     click: Up
     long_click: select_all
@@ -66,11 +63,11 @@ assist_row: #辅助行
     key_text_offset_x: 2
     key_back_color: szb
     key_text_color: szt
-    key_symbol_color: szs
+    key_symbol_color: ape_hilite
     hilited_key_back_color: szh
     hilited_key_symbol_color: szhs
     key_symbol_offset_y: *yzfy
-    key_symbol_offset_x: *yzfx
+    key_symbol_offset_x: 0
   -
     click: Down
     long_click: cut
@@ -78,22 +75,22 @@ assist_row: #辅助行
     key_text_offset_x: 2
     key_back_color: szb
     key_text_color: szt
-    key_symbol_color: szs
+    key_symbol_color: ape_hilite
     hilited_key_back_color: szh
     hilited_key_symbol_color: szhs
     key_symbol_offset_y: *yzfy
-    key_symbol_offset_x: *yzfx
+    key_symbol_offset_x: 0
   -
     click: Right
     long_click: copy
     width: 10
     key_back_color: szb
     key_text_color: szt
-    key_symbol_color: szs
+    key_symbol_color: ape_hilite
     hilited_key_back_color: szh
     hilited_key_symbol_color: szhs
     key_symbol_offset_y: *yzfy
-    key_symbol_offset_x: *yzfx
+    key_symbol_offset_x: 0
   -
     click: '{'
     long_click: '}'
@@ -138,7 +135,24 @@ assist_row: #辅助行
 
 style:
   __include: trime:/style
-  candidate_spacing: *yhxj
+  comment_text_size: 8
+  text_size: 19
+  layout:
+    __include: trime:/style/layout
+    position: fixed #位置：left|right|left_up|right_up|fixed|bottom_left|bottom_right|top_left|top_right(left、right需要>=Android5.0)
+    max_entries: 0 #候选窗口最大词条数
+    #border: 0 #候选窗口边框宽度
+    min_width: 1 #最小宽度
+    margin_x: 9 #水平边距
+    margin_y: 0 #竖直边距
+    spacing: 0 #悬浮窗偏移量
+    elevation: 0 #阴影(>=Android5.0)
+    background: background.png #颜色色或者backgrounds目录下的图片文件名，此项无效时后面配色的text_back_color则生效
+    movable: false #是否可移动窗口，或仅移动一次 true|false|once
+  window: #懸浮窗口組件
+    - {}
+    - {composition: "%s", letter_spacing: 0} #letter_spacing需要>=Android5.0。TODO: 不爲0時，會導致不換行的問題
+    - {}
 
 android_keys:
   __include: trime:/android_keys
@@ -167,52 +181,74 @@ preset_keys:
 fallback_colors:
   __include: trime:/fallback_colors
 
-preset_color_schemes:
-  __include: trime:/preset_color_schemes
-  mw:
+preset_color_schemes: 
+  default:
     author: [Mijiag, gaac510]
     name: "丹青·改"
-    #0x91071A #暗红
-    #0x730B6F #暗紫
-    #0xEEEEEC #最浅灰
-    #0xE3E3E3 #稍浅灰
-    #0xD3D3D3 #中间灰
-    #0xB3B3B3 #稍深灰
-    #0x474747 #最深灰
-    #0x000000 #黑
-    border_color: &black 0x000000
-    key_border_color: *black
-    candidate_separator_color: *black
-    #candidate_separator_color: 0xeeeeec
-    shadow_color: *black
-    hilited_text_color: &gray_lighter 0xe3e3e3
-    hilited_back_color: &dark_red 0x91071a
-    back_color: *gray_lighter
-    text_back_color: *gray_lighter
-    hilited_candidate_back_color: &dark_purple 0x730b6f
-    hilited_key_back_color: *dark_purple
-    hilited_off_key_back_color: *dark_purple
-    hilited_on_key_back_color: *dark_purple
-    on_key_back_color: *dark_purple
-    candidate_text_color: *black
-    label_color: *black
-    key_text_color: *black
-    off_key_text_color: *black
-    preview_text_color: *black
-    hilited_candidate_text_color: *gray_lighter
-    hilited_key_text_color: *gray_lighter
-    hilited_off_key_text_color: *gray_lighter
-    hilited_on_key_text_color: *gray_lighter
-    on_key_text_color: *gray_lighter
-    comment_text_color: &gray_darkest 0x474747
-    hilited_comment_text_color: *gray_darkest
-    key_symbol_color: *gray_darkest
-    hilited_key_symbol_color: *gray_darkest
-    keyboard_back_color: &gray_lightest 0xeeeeec
-    key_back_color: &gray 0xd3d3d3
-    off_key_back_color: *gray
-    preview_back_color: *gray
-    k_n_b: &gray_lighter 0xb3b3b3 #数字键盘深色键色   
+    DARK_RED: &dark_red 0x91071A #暗红
+    DARK_PURPLE: &dark_purple 0x730B6F #暗紫
+    GRAY_LIGHTEST: &gray_lightest 0xEEEEEC #最浅灰
+    GRAY_LIGHTER: &gray_lighter 0xE3E3E3 #稍浅灰
+    GRAY: &gray 0xD3D3D3 #中间灰
+    GRAY_DARKER: &gray_darker 0xB3B3B3 #稍深灰
+    GRAY_DARKEST: &gray_darkest 0x474747 #最深灰
+    BLACK: &black 0x000000 #黑
+    TRANSLUCENT: &translucent 0xBBFFFFFF #半透明
+    SHADOW: &shadow 0x30000000 #阴影色
+    #悬浮窗口
+    border_color: *translucent #悬浮窗边框
+    label_color: *black #悬浮窗候选项序号(悬浮窗高亮候选项序号与hilited_candidate_text_color相同)
+    hilited_text_color: *black #高亮编码
+    text_color: *black #编码（位于光标插入点右边的编码，或者是拼音类方案中无法正常解析的空码，比如全拼时输入hau，u就属于这种）
+    hilited_back_color: 0x00 #高亮编码背景(非高亮的编码背景与back_color相同)
+    text_back_color: *translucent #编码区背景（编码四周的空白区域，也是悬浮窗的主背景）仅当style/layout/background设置失效时才会起作用（当background生效时，text_back_color就会失效）
+    #候选项
+    back_color: *gray_lightest #候选区背景
+    hilited_candidate_back_color: *gray_lightest #高亮候选背景
+    candidate_separator_color: *gray_lightest #候选分割线
+    candidate_text_color: *gray_darkest #候选文本（包括悬浮窗候选，下同）
+    hilited_candidate_text_color: *dark_red #高亮候选文本
+    comment_text_color: *gray_darkest #候选项注释
+    hilited_comment_text_color: *gray_darkest #高亮候选项注释
+    #键盘背景
+    keyboard_back_color: *gray_lightest #键盘背景
+    #按键
+    key_back_color: *gray #按键背景
+    hilited_key_back_color: *dark_purple #高亮按键背景（按下按键时）
+    key_text_color: *black #按键文本(click)
+    hilited_key_text_color: *gray_lighter #高亮按键文本
+    key_symbol_color: *gray_darkest #按键符号(long_click和hint)
+    hilited_key_symbol_color: *gray_darkest #高亮按键符号
+    shadow_color: *black #按键文字阴影(阴影半径在shadow_radius中设定)
+    key_border_color: *black #placeholder. 暂不在支持此功能
+    #按键气泡
+    preview_back_color: *gray #按键气泡背景
+    preview_text_color: *black #按键气泡文本
+    #功能键(functional: true)
+    off_key_back_color: *gray #功能键背景
+    hilited_off_key_back_color: *dark_purple #功能键高亮背景(按下时)
+    off_key_text_color: *black #功能键文本
+    hilited_off_key_text_color: *gray_lighter #功能键高亮文本(在没有特别指定的时候，功能键的long_click和hint颜色与普通按键一样)
+    on_key_back_color: *dark_red  #shift键锁定背景
+    hilited_on_key_back_color: *dark_red #shift键锁定时的高亮背景
+    on_key_text_color: *gray_lighter #shift键锁定时文本
+    hilited_on_key_text_color: *gray_lighter #shift键锁定时的高亮文本(shift键锁定时的这四种颜色不会因为functional: false而失效)
+    #小鹤——符号键盘
+    cdh: *dark_red #符号键盘底部高亮字色
+    cdb: *gray_lightest #符号键底部菜单键背景色
+    #小鹤——选单键盘
+    Mback: *gray_lighter #menu键盘背景色
+    xdbdb: *gray_lighter #menu键盘键背景色
+    #小鹤——回车键
+    #hcb: #回车键背景色
+    #hch: #回车键高亮背景色
+    #hct: #回车键文字色
+    #hcht: #回车键高亮文字色
+    #hcs: #回车键上档色
+    #hchs:  #回车键高粱色
+    fhfht: *dark_red
+    #猿极简添加色
+    ape_hilite: *dark_red
 
 preset_keyboards:
   __include: trime:/preset_keyboards
@@ -292,6 +328,8 @@ preset_keyboards:
             long_click: paste
             width: 15
             height: *ykgh
+            key_symbol_color: ape_hilite
+            key_symbol_offset_x: 0
           "@31": #默认布局为逗号键
             click: tab_forth
             long_click: tab_back #默认为 "?"
@@ -512,7 +550,8 @@ preset_keyboards:
           "@4/click": paste2
           "@9/click": space_small
           "@14/click": K_letter
-        __append: [{width: 100, height: *yuzj}]
+          "@15/height": *yzmu
+        __append: [{width: 100, height: *yjpd}]
 
   menu:
     __include: trime:/preset_keyboards/menu
@@ -521,7 +560,8 @@ preset_keyboards:
     vertical_gap: *yhjj
     round_corner: *yjsj
     __patch:
-      "keys/@next": {width: 100, height: *yuzj}
+      "keys/@21/height": *yxdh
+      "keys/@next": {width: 100, height: *yxdd}
 
   symbolsSZ:
     __include: trime:/preset_keyboards/symbolsSZ
@@ -544,54 +584,61 @@ preset_keyboards:
           "@after 0":
             click: a
             long_click: undo
+            key_symbol_color: ape_hilite
             key_symbol_offset_y: *yzfy
           "@after 1":
             click: b
             long_click: redo
+            key_symbol_color: ape_hilite
             key_symbol_offset_y: *yzfy
           "@4/+":
             click: Delete
-            key_text_color: off_key_text_color
+            key_text_color: ape_hilite
             key_symbol_color: off_key_text_color
             hilited_key_text_color: hilited_off_key_text_color
           # ====== 数字4、5、6行 ======
           "@before 8":
             click: c
             long_click: select_all
+            key_symbol_color: ape_hilite
             key_symbol_offset_y: *yzfy
           "@before 9":
             click: d
             long_click: select_H
+            key_symbol_color: ape_hilite
             key_symbol_offset_y: *yzfy
           # ====== 数字7、8、9行 ======
           "@after 12":
             click: e
             long_click: cut
+            key_symbol_color: ape_hilite
             key_symbol_offset_y: *yzfy
           "@after 13":
             click: f
             long_click: copy
+            key_symbol_color: ape_hilite
             key_symbol_offset_y: *yzfy
           "@14/+": 
             click: Home
             long_click: End
-            key_symbol_offset_x: 16
+            key_symbol_offset_x: 0
             key_symbol_offset_y: *yzfy
-            key_text_color: off_key_text_color
-            key_symbol_color: off_key_text_color
+            key_text_color: ape_hilite
+            key_symbol_color: ape_hilite
             hilited_key_text_color: hilited_off_key_text_color
           # ====== 数字0行 ======
           "@before 20":
             click: x
             long_click: paste
+            key_symbol_color: ape_hilite
             key_symbol_offset_y: *yzfy
           "@before 21":
             click: tab_forth
             long_click: tab_back
             key_symbol_offset_x: 16
             key_symbol_offset_y: *yzfy
-            key_text_color: fhfht
-            key_symbol_color: fhfht
+            #key_text_color: fhfht
+            #key_symbol_color: fhfht
             key_back_color: fhfhb
             hilited_key_back_color: fhfhh
           # ====== 底部菜单 ======
@@ -624,6 +671,9 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_text_color: ape_hilite
+          key_symbol_color: ape_hilite
+          key_symbol_offset_x: 0
         "@6/+":
           click: tab_forth
           long_click: tab_back
@@ -675,6 +725,9 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_text_color: ape_hilite
+          key_symbol_color: ape_hilite
+          key_symbol_offset_x: 0
         "@6/+":
           click: tab_forth
           long_click: tab_back
@@ -726,6 +779,9 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_text_color: ape_hilite
+          key_symbol_color: ape_hilite
+          key_symbol_offset_x: 0
         "@6/+":
           click: tab_forth
           long_click: tab_back
@@ -777,6 +833,9 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_text_color: ape_hilite
+          key_symbol_color: ape_hilite
+          key_symbol_offset_x: 0
         "@6/+":
           click: tab_forth
           long_click: tab_back
@@ -828,6 +887,9 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_text_color: ape_hilite
+          key_symbol_color: ape_hilite
+          key_symbol_offset_x: 0
         "@6/+":
           click: tab_forth
           long_click: tab_back
@@ -879,6 +941,9 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_text_color: ape_hilite
+          key_symbol_color: ape_hilite
+          key_symbol_offset_x: 0
         "@6/+":
           click: tab_forth
           long_click: tab_back
@@ -930,6 +995,9 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_text_color: ape_hilite
+          key_symbol_color: ape_hilite
+          key_symbol_offset_x: 0
         "@6/+":
           click: tab_forth
           long_click: tab_back
@@ -981,6 +1049,9 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_text_color: ape_hilite
+          key_symbol_color: ape_hilite
+          key_symbol_offset_x: 0
         "@6/+":
           click: tab_forth
           long_click: tab_back
@@ -1032,6 +1103,9 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_text_color: ape_hilite
+          key_symbol_color: ape_hilite
+          key_symbol_offset_x: 0
         "@6/+":
           click: tab_forth
           long_click: tab_back
@@ -1073,3 +1147,4 @@ preset_keyboards:
 
 __patch:
   - 猿.emojis:/emojis?
+  - 猿.emojis:/for_ape_lean?
