@@ -12,29 +12,31 @@ author:
 
 width: 
 # ----------布局全局数值------------
+  YJZH: &yjzh 16 #键(j)字(z)号(h)
+  YJZX: &yjzx 12 #键(j)字(z)号小(x)一点
   YJJJ: &yjjj 5 #键(j)间(j)距(j)
   YHJJ: &yhjj 5 #行(h)间(j)距(j)
   YJSJ: &yjsj 25 #键(j)四(s)角(j)弧度
 
   #=== 辅助行 ===
-  YFVH: &yfvh 50  #辅(f)助(v)行(h)行高
+  YFVH: &yfvh 51  #辅(f)助(v)行(h)行高
   YZFX: &yzfx 7  #辅助行长按字(z)符(f)x偏移量
-  YZFY: &yzfy 4  #辅助行长按字(z)符(f)y偏移量
+  YZFY: &yzfy 3  #辅助行长按字(z)符(f)y偏移量
 
   #=== 主键盘 ===
-  YZMU: &yzmu 50  #字(z)母(m)首(u)行行高
-  YZMV: &yzmv 50  #字(z)母(m)中(v)行行高
-  YZMW: &yzmw 50  #字(z)母(m)尾(w)行行高
-  YKGH: &ykgh 50  #空(k)格(g)行(h)行高
+  YZMU: &yzmu 51  #字(z)母(m)首(u)行行高
+  YZMV: &yzmv 51  #字(z)母(m)中(v)行行高
+  YZMW: &yzmw 51  #字(z)母(m)尾(w)行行高
+  YKGH: &ykgh 51  #空(k)格(g)行(h)行高
   YJPD: &yjpd 20  #键(j)盘(p)底(d)空隙高度
 
   #=== 符号键盘 ===
-  YFHJ: &yfhj 45 #符(f)号(h)键(j)盘行高
+  YFHJ: &yfhj 46 #符(f)号(h)键(j)盘行高
   YDBC: &ydbc 40.5 #符号键盘底(d)部(b)菜(c)单行高
 
   #=== 选单页面 ===
-  YXDH: &yxdh 63 #选(x)单(d)行(h)高
-  YXDD: &yxdd 23  #选(x)单(d)底(d)空隙高度
+  YXDH: &yxdh 64 #选(x)单(d)行(h)高
+  YXDD: &yxdd 24  #猿极简选(x)单(d)底(d)空隙高度
 # ----------------------------------
 
 assist_row: #辅助行
@@ -44,6 +46,7 @@ assist_row: #辅助行
     swipe_up: DelH
     width: 15
     key_text_color: SHt
+    key_text_size: *yjzx
     height: *yfvh
   -
     click: Left
@@ -130,18 +133,22 @@ assist_row: #辅助行
   - #退格键上移
     click: BackSpace
     #swipe_up: Candidate_switch #这玩意有点烦
-    key_text_color: SHt
+    key_text_color: ape_hilite_contrast
+    hilited_key_text_color: ape_hilite
+    key_back_color: ape_hilite
+    hilited_key_back_color: ape_hilite_contrast
     width: 15
 
 style:
   __include: trime:/style
-  comment_text_size: 8
-  text_size: 19
-  layout:
+  # comment_text_size: 8
+  text_size: 19 #猿极简编码字号
+  key_text_size: *yjzh
+  layout: #猿极简悬浮窗外观
     __include: trime:/style/layout
     position: fixed #位置：left|right|left_up|right_up|fixed|bottom_left|bottom_right|top_left|top_right(left、right需要>=Android5.0)
     max_entries: 0 #候选窗口最大词条数
-    #border: 0 #候选窗口边框宽度
+    #border: 2 #候选窗口边框宽度
     min_width: 1 #最小宽度
     margin_x: 9 #水平边距
     margin_y: 0 #竖直边距
@@ -149,7 +156,7 @@ style:
     elevation: 0 #阴影(>=Android5.0)
     background: background.png #颜色色或者backgrounds目录下的图片文件名，此项无效时后面配色的text_back_color则生效
     movable: false #是否可移动窗口，或仅移动一次 true|false|once
-  window: #懸浮窗口組件
+  window: #猿极简懸浮窗口組件
     - {}
     - {composition: "%s", letter_spacing: 0} #letter_spacing需要>=Android5.0。TODO: 不爲0時，會導致不換行的問題
     - {}
@@ -170,6 +177,8 @@ preset_keys:
     "paste2/label": 粘贴 #默认为▣
     "redo/label": 重做 #默认为↷
     "undo/label": 撤销 #默认为↶
+    "K_letter/label": ⌨ABC #默认为abc
+    "K_back/label": ⌨鹤 #默认为“返回”
     tab_forth: {send: Tab, label: "Tab", functional: false, repeatable: false}
     tab_back: {send: Shift+Tab, label: "⇦", functional: false, repeatable: false}
     return_n_switch: {text: "{Return}{Mode_switch}", label: "中↩英"}
@@ -193,8 +202,7 @@ preset_color_schemes:
     GRAY_DARKER: &gray_darker 0xB3B3B3 #稍深灰
     GRAY_DARKEST: &gray_darkest 0x474747 #最深灰
     BLACK: &black 0x000000 #黑
-    TRANSLUCENT: &translucent 0xBBFFFFFF #半透明
-    SHADOW: &shadow 0x30000000 #阴影色
+    TRANSLUCENT: &translucent 0xCCFFFFFF #半透明
     #悬浮窗口
     border_color: *translucent #悬浮窗边框
     label_color: *black #悬浮窗候选项序号(悬浮窗高亮候选项序号与hilited_candidate_text_color相同)
@@ -249,6 +257,9 @@ preset_color_schemes:
     fhfht: *dark_red
     #猿极简添加色
     ape_hilite: *dark_red
+    ape_hilite_contrast: *gray_lighter
+    ape_hilite2: *gray_darker
+    ape_hilite2_contrast: *black
 
 preset_keyboards:
   __include: trime:/preset_keyboards
@@ -271,17 +282,17 @@ preset_keyboards:
           "@11/+": {long_click: '!', height: *yzmv}
           "@12/+": {long_click: '@'}
           "@13/+": {long_click: '#'}
-          "@14/+": {long_click: '$'}
+          "@14/+": {long_click: '$', key_text_color: ape_hilite}
           "@15/+": {long_click: '%'}
           "@16/+": {long_click: '^'}
-          "@17/+": {long_click: '&'}
+          "@17/+": {long_click: '&', key_text_color: ape_hilite}
           "@18/+": {long_click: '*'}
           "@19/+": {long_click: '\'}
           "@20": #默认布局为隐藏`l`键
             ascii: "'"
             click: apostrophe_pair
             long_click: quotation_pair
-            key_back_color: bdb
+            key_back_color: ape_hilite2
             key_text_color: bdt
             key_symbol_color: bds
             hilited_key_text_color: bdht
@@ -289,7 +300,10 @@ preset_keyboards:
             hilited_key_back_color: bdh
           # ====== 字母尾行 ======
           "@21": null #默认布局为Shift键；已上移。
-          "@22/+": {long_click: '`', height: *yzmw}
+          "@22/+":
+            long_click: '`'
+            height: *yzmw
+            key_symbol_color: ape_hilite
           "@23/+": {long_click: '~'}
           "@24/+": {long_click: '|'}
           "@25/+": {long_click: '_'}
@@ -299,7 +313,7 @@ preset_keyboards:
           "@29": #默认布局为退格键；已上移。
             click: ','
             long_click: '<'
-            key_back_color: bdb
+            key_back_color: ape_hilite2
             key_text_color: bdt
             key_symbol_color: bds
             hilited_key_text_color: bdht
@@ -308,7 +322,7 @@ preset_keyboards:
           "@after 29":
             click: '.'
             long_click: '>'
-            key_back_color: bdb
+            key_back_color: ape_hilite2
             key_text_color: bdt
             key_symbol_color: bds
             hilited_key_text_color: bdht
@@ -317,7 +331,7 @@ preset_keyboards:
           "@after 30": 
             click: '/'
             long_click: '?'
-            key_back_color: bdb
+            key_back_color: ape_hilite2
             key_text_color: bdt
             key_symbol_color: bds
             hilited_key_text_color: bdht
@@ -330,6 +344,7 @@ preset_keyboards:
             height: *ykgh
             key_symbol_color: ape_hilite
             key_symbol_offset_x: 0
+            key_text_size: *yjzx
           "@31": #默认布局为逗号键
             click: tab_forth
             long_click: tab_back #默认为 "?"
@@ -337,12 +352,13 @@ preset_keyboards:
             width: 15
             label: null #默认为 "  ，"
             key_symbol_offset_x: 16
-            key_back_color: bdb
+            key_back_color: ape_hilite2
             key_text_color: bdt
             key_symbol_color: bds
             hilited_key_back_color: bdh
             hilited_key_text_color: bdht
             hilited_key_symbol_color: bdhs
+            key_text_size: *yjzx
           "@32": #默认布局为空格键
             click: space_lovefly
             long_click: Mode_switch
@@ -365,15 +381,15 @@ preset_keyboards:
             composing: delimiterJ
             ascii: ";"
             width: 15
-            #霓裳配色
-            key_back_color: bdb
-            key_text_color: bdt
-            key_symbol_color: bds
-            hilited_key_text_color: bdht
-            hilited_key_symbol_color: bdhs
-            hilited_key_back_color: bdh
+            key_back_color: ape_hilite
+            hilited_key_back_color: ape_hilite_contrast
+            key_text_color: ape_hilite_contrast
+            hilited_key_text_color: ape_hilite
+            key_symbol_color: ape_hilite_contrast
+            hilited_key_symbol_color: ape_hilite
           "@34/+": #默认布局为回车键
             width: 15
+            key_text_size: *yjzx
             #long_click: haha
 
   defaultVJ:
@@ -539,26 +555,34 @@ preset_keyboards:
     key_symbol_offset_y: 1.8
     key_symbol_offset_x: 3
     height: *yzmu
-    horizontal_gap: *yjjj
-    vertical_gap: *yhjj
-    round_corner: *yjsj
+    horizontal_gap: *yjjj #猿极简
+    vertical_gap: *yhjj #猿极简
+    round_corner: *yjsj #猿极简
     keys:
       __include: assist_row #添加辅助行
       __append:
         __include: trime:/preset_keyboards/number/keys
         __patch:
-          "@4/click": paste2
+          "@4/+":
+            click: paste2
+            key_text_color: ape_hilite
+            key_text_size: *yjzx
           "@9/click": space_small
-          "@14/click": K_letter
+          "@14/+":
+            click: K_letter
+            key_text_color: ape_hilite
+            key_text_size: *yjzx
           "@15/height": *yzmu
+          "@19/+":
+            key_text_size: *yjzx
         __append: [{width: 100, height: *yjpd}]
 
   menu:
     __include: trime:/preset_keyboards/menu
     height: *yxdh
-    horizontal_gap: *yjjj
-    vertical_gap: *yhjj
-    round_corner: *yjsj
+    horizontal_gap: *yjjj #猿极简
+    vertical_gap: *yhjj #猿极简
+    round_corner: *yjsj #猿极简
     __patch:
       "keys/@21/height": *yxdh
       "keys/@next": {width: 100, height: *yxdd}
@@ -567,9 +591,9 @@ preset_keyboards:
     __include: trime:/preset_keyboards/symbolsSZ
     width: 14.28
     height: *yfhj
-    horizontal_gap: *yjjj
-    vertical_gap: *yhjj
-    round_corner: *yjsj
+    horizontal_gap: *yjjj #猿极简
+    vertical_gap: *yhjj #猿极简
+    round_corner: *yjsj #猿极简
     keys:
       __include: assist_row #增加辅助行
       __patch:
@@ -593,6 +617,7 @@ preset_keyboards:
             key_symbol_offset_y: *yzfy
           "@4/+":
             click: Delete
+            key_text_size: *yjzx
             key_text_color: ape_hilite
             key_symbol_color: off_key_text_color
             hilited_key_text_color: hilited_off_key_text_color
@@ -623,6 +648,7 @@ preset_keyboards:
             long_click: End
             key_symbol_offset_x: 0
             key_symbol_offset_y: *yzfy
+            key_text_size: *yjzx
             key_text_color: ape_hilite
             key_symbol_color: ape_hilite
             hilited_key_text_color: hilited_off_key_text_color
@@ -637,10 +663,11 @@ preset_keyboards:
             long_click: tab_back
             key_symbol_offset_x: 16
             key_symbol_offset_y: *yzfy
-            #key_text_color: fhfht
-            #key_symbol_color: fhfht
-            key_back_color: fhfhb
-            hilited_key_back_color: fhfhh
+            key_text_size: *yjzx
+            key_back_color: ape_hilite2
+          "@19/+": #Enter键
+            key_text_size: *yjzx
+            key_back_color: ape_hilite2
           # ====== 底部菜单 ======
           "@20/+": #默认空按键
             height: *ydbc
@@ -662,21 +689,21 @@ preset_keyboards:
   symbolsEN:
     __include: trime:/preset_keyboards/symbolsEN
     height: *yfhj
-    horizontal_gap: *yjjj
-    vertical_gap: *yhjj
-    round_corner: *yjsj
+    horizontal_gap: *yjjj #猿极简
+    vertical_gap: *yhjj #猿极简
+    round_corner: *yjsj #猿极简
     keys:
       __include: assist_row
       __patch:
         "@5/+":
           click: Home
           long_click: End
-          key_text_color: ape_hilite
-          key_symbol_color: ape_hilite
           key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -695,6 +722,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -716,21 +744,21 @@ preset_keyboards:
   symbolsEN2:
     __include: trime:/preset_keyboards/symbolsEN2
     height: *yfhj
-    horizontal_gap: *yjjj
-    vertical_gap: *yhjj
-    round_corner: *yjsj
+    horizontal_gap: *yjjj #猿极简
+    vertical_gap: *yhjj #猿极简
+    round_corner: *yjsj #猿极简
     keys:
       __include: assist_row
       __patch:
         "@5/+":
           click: Home
           long_click: End
-          key_text_color: ape_hilite
-          key_symbol_color: ape_hilite
           key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -749,6 +777,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -770,21 +799,21 @@ preset_keyboards:
   symbolsCN:
     __include: trime:/preset_keyboards/symbolsCN
     height: *yfhj
-    horizontal_gap: *yjjj
-    vertical_gap: *yhjj
-    round_corner: *yjsj
+    horizontal_gap: *yjjj #猿极简
+    vertical_gap: *yhjj #猿极简
+    round_corner: *yjsj #猿极简
     keys:
       __include: assist_row
       __patch:
         "@5/+":
           click: Home
           long_click: End
-          key_text_color: ape_hilite
-          key_symbol_color: ape_hilite
           key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -803,6 +832,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -824,21 +854,21 @@ preset_keyboards:
   emoji:
     __include: trime:/preset_keyboards/emoji
     height: *yfhj
-    horizontal_gap: *yjjj
-    vertical_gap: *yhjj
-    round_corner: *yjsj
+    horizontal_gap: *yjjj #猿极简
+    vertical_gap: *yhjj #猿极简
+    round_corner: *yjsj #猿极简
     keys:
       __include: assist_row
       __patch:
         "@5/+":
           click: Home
           long_click: End
-          key_text_color: ape_hilite
-          key_symbol_color: ape_hilite
           key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -857,6 +887,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -878,21 +909,21 @@ preset_keyboards:
   emoji2:
     __include: trime:/preset_keyboards/emoji2
     height: *yfhj
-    horizontal_gap: *yjjj
-    vertical_gap: *yhjj
-    round_corner: *yjsj
+    horizontal_gap: *yjjj #猿极简
+    vertical_gap: *yhjj #猿极简
+    round_corner: *yjsj #猿极简
     keys:
       __include: assist_row
       __patch:
         "@5/+":
           click: Home
           long_click: End
-          key_text_color: ape_hilite
-          key_symbol_color: ape_hilite
           key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -911,6 +942,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -932,21 +964,21 @@ preset_keyboards:
   symbolsTS:
     __include: trime:/preset_keyboards/symbolsTS
     height: *yfhj
-    horizontal_gap: *yjjj
-    vertical_gap: *yhjj
-    round_corner: *yjsj
+    horizontal_gap: *yjjj #猿极简
+    vertical_gap: *yhjj #猿极简
+    round_corner: *yjsj #猿极简
     keys:
       __include: assist_row
       __patch:
         "@5/+":
           click: Home
           long_click: End
-          key_text_color: ape_hilite
-          key_symbol_color: ape_hilite
           key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -965,6 +997,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -986,21 +1019,21 @@ preset_keyboards:
   symbolsTS2:
     __include: trime:/preset_keyboards/symbolsTS2
     height: *yfhj
-    horizontal_gap: *yjjj
-    vertical_gap: *yhjj
-    round_corner: *yjsj
+    horizontal_gap: *yjjj #猿极简
+    vertical_gap: *yhjj #猿极简
+    round_corner: *yjsj #猿极简
     keys:
       __include: assist_row
       __patch:
         "@5/+":
           click: Home
           long_click: End
-          key_text_color: ape_hilite
-          key_symbol_color: ape_hilite
           key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -1019,6 +1052,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -1040,21 +1074,21 @@ preset_keyboards:
   symbolsXH:
     __include: trime:/preset_keyboards/symbolsXH
     height: *yfhj
-    horizontal_gap: *yjjj
-    vertical_gap: *yhjj
-    round_corner: *yjsj
+    horizontal_gap: *yjjj #猿极简
+    vertical_gap: *yhjj #猿极简
+    round_corner: *yjsj #猿极简
     keys:
       __include: assist_row
       __patch:
         "@5/+":
           click: Home
           long_click: End
-          key_text_color: ape_hilite
-          key_symbol_color: ape_hilite
           key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -1073,6 +1107,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -1094,21 +1129,21 @@ preset_keyboards:
   symbolsXH2:
     __include: trime:/preset_keyboards/symbolsXH2
     height: *yfhj
-    horizontal_gap: *yjjj
-    vertical_gap: *yhjj
-    round_corner: *yjsj
+    horizontal_gap: *yjjj #猿极简
+    vertical_gap: *yhjj #猿极简
+    round_corner: *yjsj #猿极简
     keys:
       __include: assist_row
       __patch:
         "@5/+":
           click: Home
           long_click: End
-          key_text_color: ape_hilite
-          key_symbol_color: ape_hilite
           key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -1127,6 +1162,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -1147,4 +1183,4 @@ preset_keyboards:
 
 __patch:
   - 猿.emojis:/emojis?
-  - 猿.emojis:/for_ape_lean?
+  - 猿.emojis:/for_ape_lean? #猿极简

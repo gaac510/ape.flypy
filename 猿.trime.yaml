@@ -1,7 +1,7 @@
 # “猿”布局——在小鹤键盘默认布局的基础上修改的键盘布局
 # encoding: utf-8
 
-config_version: 'for小鹤主题5.0-2021.06.23'
+config_version: 'for小鹤主题5.2-2021.08.08'
 name: 猿
 # 本主题依附于小鹤主题使用，下面__include: 之后紧跟的就是主题名
 # 如使用本主题，小鹤主题名应为：trime.yaml；如小鹤主题名为：小鹤.trime.yaml，则需在本文件内查找“__include: trime”替换为“__include: 小鹤.trime”
@@ -12,6 +12,8 @@ author:
 
 width: 
 # ----------布局全局数值------------
+  YJZH: &yjzh 17 #键(j)字(z)号(h)
+  YJZX: &yjzx 13 #键(j)字(z)号小(x)一点
   YJJJ: &yjjj 0 #5 #键(j)间(j)距(j)
   YHJJ: &yhjj 0 #3 #行(h)间(j)距(j)
   YJSJ: &yjsj 0 #25 #键(j)四(s)角(j)弧度
@@ -27,9 +29,6 @@ width:
   YZMW: &yzmw 58  #字(z)母(m)尾(w)行行高
   YKGH: &ykgh 58  #空(k)格(g)行(h)行高
   YJPD: &yjpd 21  #键(j)盘(p)底(d)空隙高度
-  
-  #=== ascii数字键盘 ===
-  YUZJ: &yuzj 21.8  #ascii数(u)字(z)键(j)盘底空隙高度
 
   #=== 符号键盘 ===
   YFHJ: &yfhj 52  #符(f)号(h)键(j)盘行高
@@ -46,6 +45,7 @@ assist_row: #辅助行
     swipe_up: DelH
     width: 15
     key_text_color: SHt
+    key_text_size: *yjzx
     height: *yfvh
   -
     click: Left
@@ -57,7 +57,7 @@ assist_row: #辅助行
     hilited_key_back_color: szh
     hilited_key_symbol_color: szhs
     key_symbol_offset_y: *yzfy
-    key_symbol_offset_x: *yzfx
+    key_symbol_offset_x: 0
   -
     click: Up
     long_click: select_all
@@ -69,7 +69,7 @@ assist_row: #辅助行
     hilited_key_back_color: szh
     hilited_key_symbol_color: szhs
     key_symbol_offset_y: *yzfy
-    key_symbol_offset_x: *yzfx
+    key_symbol_offset_x: 0
   -
     click: Down
     long_click: cut
@@ -81,7 +81,7 @@ assist_row: #辅助行
     hilited_key_back_color: szh
     hilited_key_symbol_color: szhs
     key_symbol_offset_y: *yzfy
-    key_symbol_offset_x: *yzfx
+    key_symbol_offset_x: 0
   -
     click: Right
     long_click: copy
@@ -92,7 +92,7 @@ assist_row: #辅助行
     hilited_key_back_color: szh
     hilited_key_symbol_color: szhs
     key_symbol_offset_y: *yzfy
-    key_symbol_offset_x: *yzfx
+    key_symbol_offset_x: 0
   -
     click: '{'
     long_click: '}'
@@ -137,7 +137,8 @@ assist_row: #辅助行
 
 style:
   __include: trime:/style
-  comment_text_size: 8
+  #comment_text_size: 8
+  key_text_size: *yjzh
 
 android_keys:
   __include: trime:/android_keys
@@ -155,6 +156,8 @@ preset_keys:
     "paste2/label": 粘贴 #默认为▣
     "redo/label": 重做 #默认为↷
     "undo/label": 撤销 #默认为↶
+    "K_letter/label": ⌨ABC #默认为abc
+    "K_back/label": ⌨鹤 #默认为“返回”
     tab_forth: {send: Tab, label: "Tab", functional: false, repeatable: false}
     tab_back: {send: Shift+Tab, label: "⇦", functional: false, repeatable: false}
     return_n_switch: {text: "{Return}{Mode_switch}", label: "中↩英"}
@@ -208,7 +211,9 @@ preset_keyboards:
             hilited_key_back_color: bdh
           # ====== 字母尾行 ======
           "@21": null #默认布局为Shift键；已上移。
-          "@22/+": {long_click: '`', height: *yzmw}
+          "@22/+":
+            long_click: '`'
+            height: *yzmw
           "@23/+": {long_click: '~'}
           "@24/+": {long_click: '|'}
           "@25/+": {long_click: '_'}
@@ -247,6 +252,8 @@ preset_keyboards:
             long_click: paste
             width: 15
             height: *ykgh
+            key_symbol_offset_x: 0
+            key_text_size: *yjzx
           "@31": #默认布局为逗号键
             click: tab_forth
             long_click: tab_back #默认为 "?"
@@ -260,6 +267,7 @@ preset_keyboards:
             hilited_key_back_color: bdh
             hilited_key_text_color: bdht
             hilited_key_symbol_color: bdhs
+            key_text_size: *yjzx
           "@32": #默认布局为空格键
             click: space_lovefly
             long_click: Mode_switch
@@ -291,6 +299,7 @@ preset_keyboards:
             hilited_key_back_color: bdh
           "@34/+": #默认布局为回车键
             width: 15
+            key_text_size: *yjzx
             #long_click: haha
 
   defaultVJ:
@@ -461,10 +470,17 @@ preset_keyboards:
       __append:
         __include: trime:/preset_keyboards/number/keys
         __patch:
-          "@4/click": paste2
+          "@4/+":
+            click: paste2
+            key_text_size: *yjzx
           "@9/click": space_small
-          "@14/click": K_letter
-        __append: [{width: 100, height: *yuzj}]
+          "@14/+":
+            click: K_letter
+            key_text_size: *yjzx
+          "@15/height": *yzmu
+          "@19/+":
+            key_text_size: *yjzx
+        __append: [{width: 100, height: *yjpd}]
 
   menu:
     __include: trime:/preset_keyboards/menu
@@ -499,6 +515,7 @@ preset_keyboards:
             key_symbol_offset_y: *yzfy
           "@4/+":
             click: Delete
+            key_text_size: *yjzx
             key_text_color: off_key_text_color
             key_symbol_color: off_key_text_color
             hilited_key_text_color: hilited_off_key_text_color
@@ -523,8 +540,9 @@ preset_keyboards:
           "@14/+": 
             click: Home
             long_click: End
-            key_symbol_offset_x: 16
+            key_symbol_offset_x: 0
             key_symbol_offset_y: *yzfy
+            key_text_size: *yjzx
             key_text_color: off_key_text_color
             key_symbol_color: off_key_text_color
             hilited_key_text_color: hilited_off_key_text_color
@@ -538,10 +556,13 @@ preset_keyboards:
             long_click: tab_back
             key_symbol_offset_x: 16
             key_symbol_offset_y: *yzfy
+            key_text_size: *yjzx
+            key_back_color: fhfhb
             key_text_color: fhfht
             key_symbol_color: fhfht
-            key_back_color: fhfhb
             hilited_key_back_color: fhfhh
+          "@19/+": #Enter键
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@20/+": #默认空按键
             height: *ydbc
@@ -569,9 +590,12 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -590,6 +614,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -617,9 +642,12 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -638,6 +666,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -665,9 +694,12 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -686,6 +718,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -713,9 +746,12 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -734,6 +770,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -761,9 +798,12 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -782,6 +822,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -809,9 +850,12 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -830,6 +874,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -857,9 +902,12 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -878,6 +926,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -905,9 +954,12 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -926,6 +978,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
@@ -953,9 +1006,12 @@ preset_keyboards:
         "@5/+":
           click: Home
           long_click: End
+          key_symbol_offset_x: 0
+          key_text_size: *yjzx
         "@6/+":
           click: tab_forth
           long_click: tab_back
+          key_text_size: *yjzx
         "@7":
           click: space1
           long_click: null
@@ -974,6 +1030,7 @@ preset_keyboards:
           # ====== 默认首行 ======
           "@7/+":
             click: paste
+            key_text_size: *yjzx
           # ====== 底部菜单 ======
           "@32/+": #默认空按键
             height: *ydbc
