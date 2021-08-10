@@ -38,9 +38,9 @@ emojis:
   "preset_keyboards/emoji/keys/@38/click": 🥰
   "preset_keyboards/emoji/keys/@39/click": ❤️
   "preset_keyboards/emoji/keys/@40/click": 💔
-  "preset_keyboards/emoji/keys/@before 42": {click: 💋}
-  "preset_keyboards/emoji/keys/@before 43": {click: 🌹}
-  "preset_keyboards/emoji/keys/@before 44": {click: 🥀}
+  "preset_keyboards/emoji/keys/@41/click": 💋
+  "preset_keyboards/emoji/keys/@42/click": 🌹
+  "preset_keyboards/emoji/keys/@43/click": 🥀
 
   #修改emoji2键盘
   "preset_keyboards/emoji2/width": 11.11
@@ -76,22 +76,22 @@ emojis:
   "preset_keyboards/emoji2/keys/@38/click": 🤫
   "preset_keyboards/emoji2/keys/@39/click": 🤐
   "preset_keyboards/emoji2/keys/@40/click": 🥶
-  "preset_keyboards/emoji2/keys/@before 42": {click: 😰}
-  "preset_keyboards/emoji2/keys/@before 43": {click: 😱}
-  "preset_keyboards/emoji2/keys/@before 44": {click: 😷}
+  "preset_keyboards/emoji2/keys/@41/click": 😰
+  "preset_keyboards/emoji2/keys/@42/click": 😱
+  "preset_keyboards/emoji2/keys/@43/click": 😷
 
   #调整emoji、emoji2相关预设键外观
   "preset_keys/K_backCDZ/label": ▶Ⅰ
-  "preset_keys/K_symbolsBQ1/label": 🙂
-  "preset_keys/K_symbolsBQ2/label": 🙃
+  "preset_keys/K_symbolsBQ1/label": 👍
+  "preset_keys/K_symbolsBQ2/label": 🙂
   
   #增加emoji3相关预设键
   "preset_keys/+":
-    K_symbolsBQ3: {label: '👍', send: Eisu_toggle, select: emoji3}
+    K_symbolsBQ3: {label: '🙃', send: Eisu_toggle, select: emoji3}
     K_backCDX: {label: ▶Ⅲ, send: Eisu_toggle, select: .last_lock}
 
   #让emoji2可以跳转到emoji3
-  "preset_keyboards/emoji2/keys/@47/+":
+  "preset_keyboards/emoji2/keys/@51/+":
     click: K_symbolsBQ3
     long_click: K_backCDX
 
@@ -136,9 +136,9 @@ for_ape:
         "keys/@38/click": 🩸
         "keys/@39/click": 💣
         "keys/@40/click": 👻
-        "keys/@before 42": {click: 💀}
-        "keys/@before 43": {click: 🎂}
-        "keys/@before 44": {click: 🎮}
+        "keys/@41/click": 💀
+        "keys/@42/click": 🎂
+        "keys/@43/click": 🎮
 
 for_ape_lean:
   "preset_keyboards/+":
@@ -178,6 +178,6 @@ for_ape_lean:
         "keys/@38/click": 🩸
         "keys/@39/click": 💣
         "keys/@40/click": 👻
-        "keys/@before 42": {click: 💀}
-        "keys/@before 43": {click: 🎂}
-        "keys/@before 44": {click: 🎮}   
+        "keys/@41/click": 💀
+        "keys/@42/click": 🎂
+        "keys/@43/click": 🎮
