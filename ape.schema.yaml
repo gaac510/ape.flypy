@@ -34,14 +34,14 @@ switches:
     #states: [ ☐, ☒ ]
     reset: 0
   - name: ascii_punct
-    states: [ "，。", " , .  " ]
+    states: [ "，。", " ,   .   " ]
     reset: 0
+  - options: [ _keyboard_default, _keyboard_defaultVJ]
+    states: ["   ", "   "]
   - options: [_key_IME_switch]
     states: [⌨]
   - options: [ _key_Hide ]
     states: [▼] #默认为﹀
-  - options: [ _keyboard_default, _keyboard_defaultVJ]
-    states: ["              ", "              "]
 
 engine:
   __include: flypy.schema:/engine
