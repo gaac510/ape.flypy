@@ -51,8 +51,8 @@ translator:
   __include: flypy.schema:/translator
 historyF:
   __include: flypy.schema:/historyF
-historyI:
-  __include: flypy.schema:/historyI
+historyO:
+  __include: flypy.schema:/historyO
 simplification:
   __include: flypy.schema:/simplification
 custom_phraseVD:
@@ -61,6 +61,8 @@ custom_phraseXT:
   __include: flypy.schema:/custom_phraseXT
 custom_phraseYH:
   __include: flypy.schema:/custom_phraseYH
+custom_phraseBQ:
+  __include: flypy.schema:/custom_phraseBQ
 reverse_lookup:
   __include: flypy.schema:/reverse_lookup
 key_binder:
